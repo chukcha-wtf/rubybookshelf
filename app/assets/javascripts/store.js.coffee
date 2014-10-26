@@ -1,7 +1,7 @@
 # http://emberjs.com/guides/models/#toc_store
 # http://emberjs.com/guides/models/pushing-records-into-the-store/
 
-App.Store = DS.Store.extend({
+App.ApplicationStore = DS.Store.extend({
 
 })
 
@@ -11,5 +11,5 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
 
 })
 
-App.RESTAdapter.reopen
+DS.ActiveModelAdapter.reopen
 	namespace: 'api/v1'
