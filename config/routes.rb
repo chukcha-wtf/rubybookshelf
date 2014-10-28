@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      
+      post "/login" => "sessions#create"
+      post "/logout" => "sessions#destroy"
+    end
+  end
+
   root "assets#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

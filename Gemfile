@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'ember-rails'
 gem 'ember-source', '1.7.0'
+gem 'bcrypt', '3.1.7'
+gem 'warden', '1.2.3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -41,8 +43,8 @@ group :development do
 end
 
 group :development, :test do
-	gem "rspec-rails", "3.0.1"
-	gem "capybara", "2.3.0"
+	gem 'rspec-rails', '3.0.1'
+	gem 'capybara', '2.3.0'
 end
 
 # Use ActiveModel has_secure_password
