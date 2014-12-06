@@ -3,6 +3,7 @@ App.LoginController = Ember.ArrayController.extend
 	email: null,
 	password: null,
 	users: [],
+	books: [],
 	errorMessage: null,
 	
 	actions:
@@ -32,3 +33,8 @@ App.LoginController = Ember.ArrayController.extend
 			controller = @
 
 			controller.set('users', controller.store.find('user'));
+
+		fetchBooks: ->
+			controller = @
+
+			controller.set('books', controller.store.find('book'));

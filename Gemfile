@@ -20,6 +20,7 @@ gem 'ember-rails'
 gem 'ember-source', '1.7.0'
 gem 'bcrypt', '3.1.7'
 gem 'warden', '1.2.3'
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

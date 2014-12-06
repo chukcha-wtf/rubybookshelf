@@ -36,4 +36,8 @@ class ApplicationController < ActionController::Base
     params.permit(:page, :per_page)
   end
 
+  def query_params
+    
+  end
+
 end
