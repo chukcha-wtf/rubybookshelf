@@ -1,1 +1,55 @@
-User
+<h2>
+  {{user.fullname}}
+</h2>
+
+<div>
+  <dl class="dl-horizontal">
+    <dt>Fullname</dt>
+    <dd>{{user.fullname}}</dd>
+    <dt>Bio</dt>
+    <dd>{{user.bio}}</dd>
+  </dl>
+</div>
+<br/>
+<h4>
+  Books
+</h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each book in user.books}}
+      <tr>
+        <td>{{book.id}}</td>
+        <td>{{#link-to 'book' book}}{{book.title}}{{/link-to}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<br/>
+<h4>
+  Authors
+</h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Fullname</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each author in user.author}}
+      <tr>
+        <td>{{author.id}}</td>
+        <td>{{#link-to 'author' author}}{{author.title}}{{/link-to}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

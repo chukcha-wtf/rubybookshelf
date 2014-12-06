@@ -1,1 +1,35 @@
-Author
+<h2>
+  {{author.fullname}}
+</h2>
+
+<div>
+  <dl class="dl-horizontal">
+    <dt>Fullname</dt>
+    <dd>{{author.fullname}}</dd>
+    <dt>Bio</dt>
+    <dd>{{author.bio}}</dd>
+    <dt>User</dt>
+    <dd>{{#link-to 'user' author.user}}{{author.user.fullname}}{{/link-to}}</dd>
+  </dl>
+</div>
+<br/>
+<h4>
+  Books
+</h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each book in author.books}}
+      <tr>
+        <td>{{book.id}}</td>
+        <td>{{#link-to 'book' book}}{{book.title}}{{/link-to}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

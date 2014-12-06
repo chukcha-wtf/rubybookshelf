@@ -1,14 +1,13 @@
 App.Router.map ()->
   @resource('books', {path: '/books'}, (->
-    @resource('book', {path: '/:book_id'})
-    @resource('new', {path: '/new'})
+    @route('new', {path: '/new'})
   ))
+  @resource('book', {path: '/books/:book_id'})
   @resource('authors', {path: '/authors'}, (->
-    @resource('author', {path: '/:author_id'})
-    @resource('new', {path: '/new'})
+    @route('new', {path: '/new'})
   ))
-  @resource('users', {path: '/users'}, (->
-    @resource('user', {path: '/:user_id'})
-  ))
+  @resource('author', {path: '/authors/:author_id'})
+  @resource('users', {path: '/users'})
+  @resource('user', {path: '/users/:user_id'})
   @route('login', {path: '/'})
   @route('signup', {path: '/signup'})

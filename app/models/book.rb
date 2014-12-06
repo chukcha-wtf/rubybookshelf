@@ -15,6 +15,6 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :user
 
-  paginates_per 5
+  paginates_per 10
 
 end

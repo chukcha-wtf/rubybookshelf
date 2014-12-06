@@ -1,5 +1,5 @@
 App.BookView = Ember.View.extend
-  templateName: 'authors'
+  templateName: 'book'
 
   didInsertElement: ->
     Em.$('#navigation li.books').addClass('active')

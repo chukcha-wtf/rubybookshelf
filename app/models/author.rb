@@ -14,6 +14,8 @@ class Author < ActiveRecord::Base
   has_many :books
   belongs_to :user
 
+  paginates_per 5
+
   def as_json(options)
     super(methods: :book_ids)
   end

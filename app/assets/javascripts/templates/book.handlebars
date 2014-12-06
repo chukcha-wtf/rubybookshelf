@@ -1,1 +1,16 @@
-Book
+<h2>
+  {{book.title}}
+</h2>
+
+<div>
+  <dl class="dl-horizontal">
+    <dt>Title</dt>
+    <dd>{{book.title}}</dd>
+    <dt>Description</dt>
+    <dd>{{book.description}}</dd>
+    <dt>Author</dt>
+    <dd>{{#link-to 'author' book.author}}{{book.author.fullname}}{{/link-to}}</dd>
+    <dt>User</dt>
+    <dd>{{#link-to 'user' book.user}}{{book.user.fullname}}{{/link-to}}</dd>
+  </dl>
+</div>

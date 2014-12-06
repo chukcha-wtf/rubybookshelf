@@ -6,7 +6,7 @@ class Api::V1::UsersController < ApplicationController
 	respond_to :json
 
 	def index
-    @books = User.where(query_params).page(page_params[:page]).per(page_params[:per_page])
+    @users = User.where(query_params).page(page_params[:page]).per(page_params[:per_page])
     users = {"users" => @users}
     users["meta"] = {"total_entries" => @users.total_count, "total_pages" => @users.total_pages, "current_page" => @users.current_page }
 

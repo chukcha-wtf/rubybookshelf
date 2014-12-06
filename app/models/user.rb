@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   has_many :books
   has_many :authors
 
+  paginates_per 5
+
   def as_json(options)
     super(except: [:password_digest, :updated_at], methods: :book_ids)
   end

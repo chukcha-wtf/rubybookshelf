@@ -1,1 +1,24 @@
-Books
+<h2>
+  Books
+  {{#link-to 'books.new' class="btn btn-info pull-right"}}New{{/link-to}}
+</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each book in books}}
+      <tr>
+        <td>{{book.id}}</td>
+        <td>{{#link-to 'book' book}}{{book.title}}{{/link-to}}</td>
+        <td>{{#link-to 'author' book.author}}{{book.author.fullname}}{{/link-to}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
