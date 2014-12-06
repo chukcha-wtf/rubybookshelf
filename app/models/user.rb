@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   paginates_per 5
 
   def as_json(options)
-    super(except: [:password_digest, :updated_at], methods: :book_ids)
+    super(except: [:password_digest, :updated_at], methods: [:book_ids, :author_ids])
   end
 
   def can_update?(record)

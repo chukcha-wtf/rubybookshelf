@@ -45,10 +45,10 @@
     </tr>
   </thead>
   <tbody>
-    {{#each author in user.author}}
+    {{#each author in user.authors}}
       <tr>
         <td>{{author.id}}</td>
-        <td>{{#link-to 'author' author}}{{author.title}}{{/link-to}}</td>
+        <td>{{#link-to 'author' author}}{{author.fullname}}{{/link-to}}</td>
       </tr>
     {{/each}}
   </tbody>

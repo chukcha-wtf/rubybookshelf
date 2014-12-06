@@ -13,8 +13,14 @@ App.LoginController = Ember.ArrayController.extend
       controller = @
 
       Em.$.post('/api/v1/login', {email: @get('email'), password: @get('password')}).done(->
+        App.currentUser = null;
+        App.__container__.lookup('controller:header').set('user', null)
         App.__container__.lookup('controller:header').checkUser()
         controller.transitionToRoute 'books'
       ).fail((error)->
         controller.showError(error)
       )
+
+  clearData: ->
+    @set('email', null)
+    @set('password', null)
