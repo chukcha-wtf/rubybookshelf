@@ -22,4 +22,9 @@ class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
 
+
+  def as_json(options)
+    super(except: [:password_digest, :updated_at, :created_at])
+  end
+
 end

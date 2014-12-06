@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
 		user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
     	warden.set_user(user, scope: :user)
-      render json: user.to_json(except: [:password_digest, :created_at, :updated_at])
+      render json: user
     else
       render json: "wrong_credentials", status: 401
     end

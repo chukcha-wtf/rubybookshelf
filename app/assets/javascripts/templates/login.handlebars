@@ -1,29 +1,29 @@
 <h2>Hello there</h2>
 {{#if loggedIn}}
 	Logged in user
+	<a href="" {{action 'logout'}}>Logout</a>
 {{else}}
 	Please log in
-{{/if}}
-<h3>{{errorMessage}}</h3>
-<form {{action 'login' on='submit'}} class="form">
-	<div class="form-group">
-		<label name="email">Email: </label>
-		{{input type="email" value=email}}
-	</div>
-	<div class="form-group">
-		<label name="password">Password: </label>
-		{{input type="password" value=password}}
-	</div>
-	<div class="form-group">
-		<button>Log me in!</button>
-	</div>
-</form>
+	<h3>{{errorMessage}}</h3>
+	<form {{action 'login' on='submit'}} class="form">
+		<div class="form-group">
+			<label name="email">Email: </label>
+			{{input type="email" value=email}}
+		</div>
+		<div class="form-group">
+			<label name="password">Password: </label>
+			{{input type="password" value=password}}
+		</div>
+		<div class="form-group">
+			<button>Log me in!</button>
+		</div>
+	</form>
 
-<br/>
-<br/>
+	<br/>
+	<br/>
+{{/if}}
 
 <div>
-	<a href="" {{action 'logout'}}>Logout</a>
 	<a href="" {{action 'fetchUsers'}}>Fetch Users</a>
 </div>
 
@@ -34,11 +34,11 @@
 	<table>
 		<tbody>
 			{{#each user in users}}
-				<li>
+				<tr>
 					<td>{{user.email}}</td>
 					<td>{{user.fullname}}</td>
 					<td>{{user.bio}}</td>
-				</li>
+				</tr>
 			{{/each}}
 		</tbody>
 	</table>

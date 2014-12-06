@@ -15,6 +15,7 @@ App.LoginController = Ember.ArrayController.extend
 				data: {email: @get('email'), password: @get('password')}
 				success: (data) ->
 					controller.set('user', data)
+					controller.send('fetchUsers');
 					controller.set('loggedIn', true)
 				error: (xhr, status, error) ->
 					controller.set('errorMessage', error);
@@ -24,18 +25,10 @@ App.LoginController = Ember.ArrayController.extend
 				url: '/api/v1/logout'
 				type: "POST"
 				success: (data) ->
-					console.log(data)
 				error: (xhr, status, error) ->
 					controller.set('errorMessage', error);
 
 		fetchUsers: ->
 			controller = @
 
-			Em.$.ajax
-				url: '/api/v1/users'
-				type: 'GET',
-				success: (data) ->
-					controller.set('users', data)
-				error: (xhr, status, error) ->
-					controller.set('errorMessage', error);
-
+			controller.set('users', controller.store.find('user'));
