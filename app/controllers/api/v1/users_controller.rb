@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-	before_action :authenticate_user!
+  include RoleCheck
+
 	before_action :set_user, only: [:show, :update, :destroy]
 	respond_to :json
 
@@ -19,6 +20,18 @@ class Api::V1::UsersController < ApplicationController
     respond_with user
   end
 
+  def update
+    if current_user.can_update?(@user)
+      if @user.update(user_params)
+        render json: {"user" => @user}, status: :created
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    else
+      render_permission_denied
+    end
+  end
+
 	private
 		def set_user
 			user_id = params[:id] == 'current' ? current_user.id : params[:id]
@@ -26,7 +39,7 @@ class Api::V1::UsersController < ApplicationController
 		end
 
     def user_params
-      params.require(:user).permit(:fullname, :bio, :password, :password_confirmation, :email)
+      params.require(:user).permit(:fullname, :bio, :password, :password_confirmation, :email, :role)
     end
 
 end

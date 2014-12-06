@@ -1,5 +1,6 @@
 class Api::V1::AuthorsController < ApplicationController
-  before_action :authenticate_user!
+  include RoleCheck
+  
   before_action :set_author, only: [:show, :edit, :update, :destroy]
   respond_to :json
 
@@ -29,16 +30,24 @@ class Api::V1::AuthorsController < ApplicationController
   end
 
   def update
-    if @author.update(author_params)
-      render json: {"author" => @author}, status: :created
+    if current_user.can_update?(@book)
+      if @author.update(author_params)
+        render json: {"author" => @author}, status: :created
+      else
+        render json: @author.errors, status: :unprocessable_entity
+      end
     else
-      render json: @author.errors, status: :unprocessable_entity
+      render_permission_denied
     end
   end
 
   def destroy
-    @author.destroy
-    head :no_content
+    if current_user.can_update?(@book)
+      @author.destroy
+      head :no_content
+    else
+      render_permission_denied
+    end
   end
 
   private

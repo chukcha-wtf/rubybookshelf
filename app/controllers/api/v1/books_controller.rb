@@ -1,5 +1,6 @@
 class Api::V1::BooksController < ApplicationController
-  before_action :authenticate_user!
+  include RoleCheck
+
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   respond_to :json
 
@@ -29,16 +30,24 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def update
-    if @book.update(book_params)
-      render json: {"book" => @book}, status: :created
+    if current_user.can_update?(@book)
+      if @book.update(book_params)
+        render json: {"book" => @book}, status: :created
+      else
+        render json: @book.errors, status: :unprocessable_entity
+      end
     else
-      render json: @book.errors, status: :unprocessable_entity
+      render_permission_denied
     end
   end
 
   def destroy
-    @book.destroy
-    head :no_content
+    if current_user.can_update?(@book)
+      @book.destroy
+      head :no_content
+    else
+      render_permission_denied
+    end
   end
 
   private

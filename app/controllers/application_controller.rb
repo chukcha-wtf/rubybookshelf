@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     render json: {message: 'not_found'}, head: :not_found, status: 404
   end
 
+  def render_permission_denied
+    render json: {message: "permission_denied"}, status: 403
+  end
+
   def current_user
   	if user_signed_in?
   		@current_user ||= begin

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   ROLES = %w{guest user admin}
 
   ROLES.each do |r|
-    define_method "#{r}?" do
+    define_method "is_a_#{r}?" do
       role == r
     end
   end
@@ -38,6 +38,16 @@ class User < ActiveRecord::Base
 
   def as_json(options)
     super(except: [:password_digest, :updated_at], methods: :book_ids)
+  end
+
+  def can_update?(record)
+    if is_a_admin?
+      true
+    elsif is_a_user?
+      record.class.to_s == 'User' ? record == self : record.user == self
+    else
+      false
+    end
   end
 
 end
