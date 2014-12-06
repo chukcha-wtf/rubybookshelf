@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     if !user_signed_in?
-      render json: "unauthorized.user", status: 401
+      render json: {message: "unauthorized.user"}, status: 401
     end
+  end
+
+  def render_404
+    render json: {message: 'not_found'}, head: :not_found, status: 404
   end
 
   def current_user
@@ -26,6 +30,10 @@ class ApplicationController < ActionController::Base
 
   def warden
     request.env["warden"]
+  end
+
+  def page_params
+    params.permit(:page, :per_page)
   end
 
 end

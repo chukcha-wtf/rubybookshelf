@@ -7,6 +7,6 @@ class Api::V1::UnauthorizedController < ApplicationController
 
   def respond
     message = env['warden.options'].fetch(:message, "unauthorized.user")
-    render json: message, status: 401
+    render json: {message: message}, status: 401
   end
 end

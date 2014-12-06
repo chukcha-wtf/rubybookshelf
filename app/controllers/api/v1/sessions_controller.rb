@@ -5,15 +5,15 @@ class Api::V1::SessionsController < ApplicationController
 		user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
     	warden.set_user(user, scope: :user)
-      render json: user
+      render json: {"user": user}
     else
-      render json: "wrong_credentials", status: 401
+      render json: {message: "wrong_credentials"}, status: 401
     end
 	end
 
 	def destroy
 		warden.logout(:user)
 
-		render json: "logged_out", status: 200
+		render json: {message: "logged_out"}, status: 200
 	end
 end

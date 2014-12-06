@@ -10,13 +10,13 @@ class Api::V1::UsersController < ApplicationController
 
 	def show
     user = {"user" => @user}
-    respond_with
+    respond_with user
 	end
 
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
     user = {"user" => @user}
-    respond_with @user
+    respond_with user
   end
 
 	private
