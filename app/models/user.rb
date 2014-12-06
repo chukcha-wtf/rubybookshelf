@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates_presence_of :password, on: :create
 
   before_save { self.email = email.downcase }
 

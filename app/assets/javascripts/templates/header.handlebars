@@ -1,0 +1,19 @@
+<div class="header">
+  {{#if loggedIn}}
+    <nav>
+      <ul class="nav nav-pills pull-right" id="navigation">
+        <li role="presentation" class="books">{{#link-to 'books'}}Books{{/link-to}}</li>
+        <li role="presentation" class="authors">{{#link-to 'authors'}}Authors{{/link-to}}</li>
+        <li role="presentation" class="users">{{#link-to 'users'}}Users{{/link-to}}</li>
+        <li role="presentation" class="logout"><a href="#" {{action 'logout'}}>LogOut</a></li>
+      </ul>
+    </nav>
+  {{/if}}
+  <h3 class="text-muted">Ruby BookShelf</h3>
+</div>
+{{#if errorMessage}}
+  <div class="alert alert-danger" role="alert">
+    <button type="button" class="close" {{action 'hideError'}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    {{errorMessage}}
+  </div>
+{{/if}}

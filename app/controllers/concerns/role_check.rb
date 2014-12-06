@@ -7,7 +7,7 @@ module RoleCheck
   end
 
   def check_guest_access
-    if current_user.is_a_guest?
+    if current_user && current_user.is_a_guest?
       render_permission_denied
     end
   end

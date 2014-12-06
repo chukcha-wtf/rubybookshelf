@@ -1,75 +1,15 @@
-<h2>Hello there</h2>
-{{#if loggedIn}}
-	Logged in user
-	<a href="" {{action 'logout'}}>Logout</a>
-{{else}}
-	Please log in
-	<h3>{{errorMessage}}</h3>
-	<form {{action 'login' on='submit'}} class="form">
-		<div class="form-group">
-			<label name="email">Email: </label>
-			{{input type="email" value=email}}
-		</div>
-		<div class="form-group">
-			<label name="password">Password: </label>
-			{{input type="password" value=password}}
-		</div>
-		<div class="form-group">
-			<button>Log me in!</button>
-		</div>
+<p class="text-muted text-center">This is a <mark>unique</mark> engine where  you can store the books you're reading on.</p>
+<div class="col-xs-6 col-xs-offset-3">	
+	<h2>Hello there <mark>username</mark></h2><br/>
+	<form {{action 'login' on='submit'}} class="form-signin" role="form">
+		<label name="email" class="sr-only">Email: </label>
+		{{input type="email" value=email  class="form-control email" placeholder="Email"}}
+		<label name="password" class="sr-only">Password: </label>
+		{{input type="password" value=password class="form-control password" placeholder="Password"}}
+		<br/>
+		<button class="btn btn-lg btn-block btn-primary btn-success">Hey, let me in!</button>
 	</form>
-
 	<br/>
-	<br/>
-{{/if}}
-
-<div>
-	<a href="" {{action 'fetchUsers'}}>Fetch Users</a>
-	<a href="" {{action 'fetchBooks'}}>Fetch Books</a>
-	<a href="" {{action 'fetchAuthors'}}>Fetch Authors</a>
+	{{#link-to 'signup' class="pull-right"}}Hey, I wanna sign up{{/link-to}}
 </div>
 
-<br/>
-<br/>
-
-<div class="users">
-	<table>
-		<tbody>
-			{{#each user in users}}
-				<tr>
-					<td>{{user.email}}</td>
-					<td>{{user.fullname}}</td>
-					<td>{{user.bio}}</td>
-				</tr>
-			{{/each}}
-		</tbody>
-	</table>
-</div>
-<br/>
-<br/>
-
-<div class="books">
-	<table>
-		<tbody>
-			{{#each book in books}}
-				<tr>
-					<td>{{book.title}}</td>
-					<td>{{book.description}}</td>
-				</tr>
-			{{/each}}
-		</tbody>
-	</table>
-</div>
-
-<div class="authors">
-	<table>
-		<tbody>
-			{{#each author in authors}}
-				<tr>
-					<td>{{author.fullname}}</td>
-					<td>{{author.bio}}</td>
-				</tr>
-			{{/each}}
-		</tbody>
-	</table>
-</div>

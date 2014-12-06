@@ -3,5 +3,6 @@ App.User = DS.Model.extend
   bio: DS.attr 'string'
   email: DS.attr 'string'
   created_at: DS.attr 'date'
+  role: DS.attr 'string'
   books: DS.hasMany 'book', { async: true } 
   books: DS.hasMany 'author', { async: true } 

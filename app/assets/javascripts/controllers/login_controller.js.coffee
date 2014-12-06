@@ -1,45 +1,20 @@
 App.LoginController = Ember.ArrayController.extend
-	loggedIn: false,
-	email: null,
-	password: null,
-	users: [],
-	books: [],
-	errorMessage: null,
-	
-	actions:
-		login: ->
-			controller = @
+  needs: ['header']
+  user: Ember.computed.alias("controllers.header.user")
+  email: null
+  password: null
 
-			Em.$.ajax
-				url: '/api/v1/login'
-				type: "POST"
-				data: {email: @get('email'), password: @get('password')}
-				success: (data) ->
-					controller.set('user', data)
-					controller.send('fetchUsers');
-					controller.set('loggedIn', true)
-				error: (xhr, status, error) ->
-					controller.set('errorMessage', error);
+  observeUser: (->
+    @transitionToRoute('books') if @get('user')
+  ).observes('user')
+  
+  actions:
+    login: ->
+      controller = @
 
-		logout: ->
-			Em.$.ajax
-				url: '/api/v1/logout'
-				type: "POST"
-				success: (data) ->
-				error: (xhr, status, error) ->
-					controller.set('errorMessage', error);
-
-		fetchUsers: ->
-			controller = @
-
-			controller.set('users', controller.store.find('user'));
-
-		fetchBooks: ->
-			controller = @
-
-			controller.set('books', controller.store.find('book'));
-
-		fetchAuthors: ->
-			controller = @
-
-			controller.set('authors', controller.store.find('author'));
+      Em.$.post('/api/v1/login', {email: @get('email'), password: @get('password')}).done(->
+        App.__container__.lookup('controller:header').checkUser()
+        controller.transitionToRoute 'books'
+      ).fail((error)->
+        controller.showError(error)
+      )

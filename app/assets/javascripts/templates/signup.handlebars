@@ -1,0 +1,20 @@
+<p class="text-muted text-center">This is a <mark>unique</mark> engine where  you can store the books you're reading on.</p>
+<div class="col-xs-6 col-xs-offset-3">  
+  <h2>Hello there <mark>username</mark></h2><br/>
+  <p class="text-muted">Please provide your details</p>
+  <form {{action 'signup' on='submit'}} class="form-signin" role="form">
+    <label name="email" class="sr-only">Email: </label>
+    {{input type="email" value=email  class="form-control" placeholder="Email"}}
+    <label name="email" class="sr-only">Fullname: </label>
+    {{input type="text" value=fullname  class="form-control" placeholder="Fullname"}}
+    <label name="password" class="sr-only">Password: </label>
+    {{input type="password" value=password class="form-control" placeholder="Password"}}
+    <label name="password" class="sr-only">Confirm password: </label>
+    {{input type="password" value=password_confirmation class="form-control" placeholder="Confirm password"}}
+    <br/>
+    <button class="btn btn-lg btn-block btn-primary btn-success">I'm done!</button>
+  </form>
+  <br/>
+  {{#link-to 'login' class="pull-right"}}I just wan't to log in{{/link-to}}
+</div>
+

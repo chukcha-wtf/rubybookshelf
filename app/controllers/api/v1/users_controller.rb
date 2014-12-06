@@ -2,10 +2,14 @@ class Api::V1::UsersController < ApplicationController
   include RoleCheck
 
 	before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:create]
 	respond_to :json
 
 	def index
-    users = {"users" => User.all}
+    @books = User.where(query_params).page(page_params[:page]).per(page_params[:per_page])
+    users = {"users" => @users}
+    users["meta"] = {"total_entries" => @users.total_count, "total_pages" => @users.total_pages, "current_page" => @users.current_page }
+
     respond_with users
 	end
 
@@ -15,15 +19,18 @@ class Api::V1::UsersController < ApplicationController
 	end
 
   def create
-    @user = User.create(user_params)
-    user = {"user" => @user}
-    respond_with user
+    @user = User.new(user_params)
+    if @user.save
+      render json: {"user" => @user}, status: :created
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   def update
     if current_user.can_update?(@user)
       if @user.update(user_params)
-        render json: {"user" => @user}, status: :created
+        render json: {"user" => @user}, status: :updated
       else
         render json: @user.errors, status: :unprocessable_entity
       end
