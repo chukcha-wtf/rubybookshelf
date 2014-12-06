@@ -26,6 +26,7 @@
 <div>
 	<a href="" {{action 'fetchUsers'}}>Fetch Users</a>
 	<a href="" {{action 'fetchBooks'}}>Fetch Books</a>
+	<a href="" {{action 'fetchAuthors'}}>Fetch Authors</a>
 </div>
 
 <br/>
@@ -54,6 +55,19 @@
 				<tr>
 					<td>{{book.title}}</td>
 					<td>{{book.description}}</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>
+
+<div class="authors">
+	<table>
+		<tbody>
+			{{#each author in authors}}
+				<tr>
+					<td>{{author.fullname}}</td>
+					<td>{{author.bio}}</td>
 				</tr>
 			{{/each}}
 		</tbody>

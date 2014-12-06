@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def query_params
-    
+    {}    
   end
 
 end

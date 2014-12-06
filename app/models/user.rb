@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :books
 
   def as_json(options)
-    super(except: [:password_digest, :updated_at, :created_at])
+    super(except: [:password_digest, :updated_at], methods: :book_ids)
   end
 
 end

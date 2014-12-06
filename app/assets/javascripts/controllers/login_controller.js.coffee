@@ -38,3 +38,8 @@ App.LoginController = Ember.ArrayController.extend
 			controller = @
 
 			controller.set('books', controller.store.find('book'));
+
+		fetchAuthors: ->
+			controller = @
+
+			controller.set('authors', controller.store.find('author'));

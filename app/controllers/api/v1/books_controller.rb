@@ -5,7 +5,7 @@ class Api::V1::BooksController < ApplicationController
 
 
   def index
-    @books = Book.page(page_params[:page]).per(page_params[:per_page])
+    @books = Book.where(query_params).page(page_params[:page]).per(page_params[:per_page])
     books = {"books" => @books}
     books["meta"] = {"total_entries" => @books.total_count, "total_pages" => @books.total_pages, "current_page" => @books.current_page }
 
@@ -13,7 +13,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def show
-    book = {"book" => book }
+    book = {"book" => @book }
 
     respond_with book
   end

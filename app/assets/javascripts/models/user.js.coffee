@@ -3,7 +3,7 @@ App.User = DS.Model.extend
   bio: DS.attr 'string'
   email: DS.attr 'string'
   created_at: DS.attr 'date'
-  books: DS.hasMany 'book'
+  books: DS.hasMany 'book', { async: true } 
 
 # App.UserSerializer = DS.RESTSerializer.extend({
 #   extractSingle: (store, type, payload, id, requestType) ->

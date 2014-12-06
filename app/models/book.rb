@@ -17,8 +17,4 @@ class Book < ActiveRecord::Base
 
   paginates_per 5
 
-  def as_json(options)
-    super(except: [:author_id, :user_id])
-  end
-
 end
