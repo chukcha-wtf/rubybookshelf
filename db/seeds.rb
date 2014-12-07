@@ -8,7 +8,8 @@ roles.each do |role|
   u = User.create(email: "#{role}@mail.com", 
               password: "123456", 
               password_confirmation: "123456",
-              fullname: "#{role.capitalize} User")
+              fullname: "#{role.capitalize} User",
+              role: role)
   if role != 'guest'
     3.times do |i|
       b = Book.new(title: "Book #{i} for #{role.capitalize}",

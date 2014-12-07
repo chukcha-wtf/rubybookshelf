@@ -3,4 +3,5 @@ App.BookRoute = Ember.Route.extend({
     @store.find('book', params.book_id)
   setupController: (controller, model) ->
     controller.set('book', model)
+    controller.set('authors', controller.store.find('author'))
 })

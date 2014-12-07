@@ -17,3 +17,7 @@ App.BookController = Ember.ArrayController.extend
 
     edit: ->
       @set('editing', true)
+
+    delete: ->
+      @get('book').destroyRecord()
+      @transitionToRoute 'books'

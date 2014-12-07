@@ -6,6 +6,7 @@
   {{else}}
     {{#canEditRecord book}}
       <a href="#" class="pull-right btn btn-info" {{action 'edit'}}>Edit</a>
+      <a href="#" class="pull-right btn btn-danger" {{action 'delete'}}>Delete</a>
     {{/canEditRecord}}
   {{/if}}
 </h2>
@@ -23,13 +24,19 @@
     <dt>Description</dt>
     <dd>
       {{#if editing}}
-        {{input type="text" value=book.description class="form-control"}}
+        {{textarea value=book.description class="form-control"}}
       {{else}}
         {{book.description}}
       {{/if}}
     </dd>
     <dt>Author</dt>
-    <dd>{{#link-to 'author' book.author}}{{book.author.fullname}}{{/link-to}}</dd>
+    <dd>
+      {{#if editing}}
+        {{view Ember.Select content=authors optionValuePath="content.id" optionLabelPath="content.fullname" value=book.author.id class="form-control" }}
+      {{else}}
+        {{#link-to 'author' book.author}}{{book.author.fullname}}{{/link-to}}
+      {{/if}}
+    </dd>
     <dt>User</dt>
     <dd>{{#link-to 'user' book.user}}{{book.user.fullname}}{{/link-to}}</dd>
   </dl>

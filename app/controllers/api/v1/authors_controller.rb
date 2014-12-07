@@ -20,7 +20,7 @@ class Api::V1::AuthorsController < ApplicationController
   end
 
   def create
-    @author = Author.new(author_params)
+    @author = current_user.authors.new(author_params)
 
     if @author.save
       render json: {"author" => @author}, status: :created

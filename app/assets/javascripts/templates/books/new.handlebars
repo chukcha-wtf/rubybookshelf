@@ -1,1 +1,16 @@
-Books New
+<div class="col-xs-6 col-xs-offset-3">  
+  <h2>New Book</h2><br/>
+  <p class="text-muted">Please fill in details</p>
+  <form {{action 'save' on='submit'}} class="form-signin" role="form">
+    <label name="text" class="sr-only">Title: </label>
+    {{input type="text" value=book.title  class="form-control" placeholder="Title"}}
+    <label name="description" class="sr-only">Description: </label>
+    {{textarea value=book.description class="form-control"}}
+    <br/>
+    {{view Ember.Select content=authors optionValuePath="content" optionLabelPath="content.fullname" value=book.author class="form-control" }}
+    <br/>
+    <button class="btn btn-lg btn-block btn-primary btn-success">Save</button>
+  </form>
+  <br/>
+</div>
+
