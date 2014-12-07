@@ -1,5 +1,6 @@
 Ember.Handlebars.registerHelper "canEditRecord", (context, options) ->
   self = @
+  console.log(self)
   switch
     when !jQuery.isEmptyObject self.book
       user = self.book.get('user')
@@ -8,7 +9,8 @@ Ember.Handlebars.registerHelper "canEditRecord", (context, options) ->
     when !jQuery.isEmptyObject self.user
       user = self.user
 
-  if user.get('isAdmin')
+  console.log(user)
+  if App.currentUser.get('isAdmin')
     options.fn(@)
   else
     if user.get('isUser')

@@ -32,7 +32,7 @@ class Api::V1::AuthorsController < ApplicationController
   def update
     if current_user.can_update?(@book)
       if @author.update(author_params)
-        render json: {"author" => @author}, status: :created
+        render json: {"author" => @author}, status: :ok
       else
         render json: @author.errors, status: :unprocessable_entity
       end
