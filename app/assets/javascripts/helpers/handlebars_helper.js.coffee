@@ -24,3 +24,12 @@ Ember.Handlebars.registerHelper "canEditRecord", (context, options) ->
         options.inverse(@)
     else
       options.inverse(@)
+
+Ember.Handlebars.registerHelper "ifCanCreateRecord", (context, options) ->
+  self = @
+
+  if App.currentUser
+    if App.currentUser.get('isAdmin') || App.currentUser.get('isUser')
+      options.fn(@)
+    else
+      options.inverse(@)

@@ -1,6 +1,8 @@
 <h2>
   Books
-  {{#link-to 'books.new' class="btn btn-info pull-right"}}New{{/link-to}}
+  {{#ifCanCreateRecord App.currentUser}}
+    {{#link-to 'books.new' class="btn btn-info pull-right"}}New{{/link-to}}
+  {{/ifCanCreateRecord}}
 </h2>
 
 {{outlet}}

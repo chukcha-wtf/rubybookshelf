@@ -5,4 +5,12 @@ App.BooksRoute = Ember.Route.extend({
       controller.set('books', data)
     , (error) ->
       controller.showError(error)
+  renderTemplate: ->
+    r = @
+    if App.currentUser
+      r.render()
+    else
+      setTimeout ->
+        r.render()
+      , 200
 })  
